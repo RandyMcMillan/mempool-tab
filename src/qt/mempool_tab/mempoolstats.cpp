@@ -327,10 +327,14 @@ void MempoolStats::drawChart()
                     QString("⦿ (%1,%2)").arg(fee_paths[i-1].currentPosition().x()).arg(fee_paths[i-1].currentPosition().y()-30.0), gridFont);
                 pathDot->setPos(fee_paths[i-1].currentPosition().x(), fee_paths[i-1].currentPosition().y()-30.0);
                 pathDot->setZValue(i*10);
-            } else { /* Check BlockTime */
-                QGraphicsTextItem *timeTicker = m_scene->addText(QString("⦿"), gridFont);
-                timeTicker->setPos(fee_paths[i-1].currentPosition().x()-GRAPH_PADDING_RIGHT, bottom-20.0);
+
+                QGraphicsTextItem *timeTicker = m_scene->addText(QString("|"), gridFont);
+                timeTicker->setPos(fee_paths[i-1].currentPosition().x()-5.7, bottom+0.0);
                 timeTicker->setZValue(i*10);
+            } else { /* Check BlockTime */
+                QGraphicsTextItem *blockTicker = m_scene->addText(QString("|"), gridFont);
+                blockTicker->setPos(fee_paths[i-1].currentPosition().x()-5.7, bottom+15.0);
+                blockTicker->setZValue(i*10);
             }
 
             feepath.lineTo(fee_paths[i-1].currentPosition());
@@ -344,14 +348,8 @@ void MempoolStats::drawChart()
 
         } else {
 
-            feepath.lineTo(current_x, bottom-(GRAPH_PADDING_TOP));
-            feepath.lineTo(current_x, bottom-(0));
-
-            if (MEMPOOL_GRAPH_LOGGING){
-                LogPrintf("\ncurrent_x = %s",current_x);
-                LogPrintf("\nbottom = %s",bottom);
-                LogPrintf("\nfee_paths[i-1].toReversed().length() = %s",(double)fee_paths[i].toReversed().length());
-            }
+            feepath.lineTo(current_x, bottom);
+            feepath.lineTo(GRAPH_PADDING_LEFT+GRAPH_PADDING_LEFT_ADJUST, bottom);
 
         }
 
