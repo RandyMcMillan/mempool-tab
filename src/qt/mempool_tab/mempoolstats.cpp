@@ -238,28 +238,16 @@ void MempoolStats::drawChart()
             }
         }
 
-        // calculate the x axis step per sample
-        // we ignore the time difference of collected samples due to locking issues
-        // TODO: implement x scale pillbox adjust here
-        // Replace GRAPH_X_SCALE_ADJUST with function call connected to pillbox
-        //
-
-
-            if (MEMPOOL_GRAPH_LOGGING){
-
-                LogPrintf("\nm_clientmodel->m_mempool_max_samples = %s\n", m_clientmodel->m_mempool_max_samples);
-
-            }
-
-
+        if (MEMPOOL_GRAPH_LOGGING){
+            LogPrintf("\nm_clientmodel->m_mempool_max_samples = %s\n", m_clientmodel->m_mempool_max_samples);
+        }
 
         const qreal x_increment =
-            (width() - (GRAPH_PADDING_LEFT + GRAPH_PADDING_LEFT_ADJUST + GRAPH_PADDING_RIGHT)) / (m_clientmodel->m_mempool_max_samples * GRAPH_X_INCREMENT_ADJUST); //samples.size();
+            qCeil(1.66 * ((width() - (GRAPH_PADDING_LEFT + GRAPH_PADDING_LEFT_ADJUST + GRAPH_PADDING_RIGHT)) / m_clientmodel->m_mempool_max_samples));
+
         QPointF current_x_bottom = QPointF(current_x,bottom);
 
         drawHorzLines(x_increment, current_x_bottom, amount_of_h_lines, maxheight_g, maxwidth, bottom, max_txcount_graph, gridFont);
-        //drawFeeRanges(bottom, gridFont);
-        //drawFeeRects(bottom, maxwidth, display_up_to_range, ADD_TEXT, gridFont);
 
         // draw the paths
         bool first = true;
@@ -274,17 +262,10 @@ void MempoolStats::drawChart()
                 }
                 y -= (maxheight_g / max_txcount_graph * list_entry.tx_count);
                 if (first) {
-                    // first sample, initiate the path with first point
-                    //                        TODO:dynamic scalar
-                    //fee_paths.emplace_back(QPointF(GRAPH_PATH_SCALAR*current_x, y));//affects scale height draw
                     fee_paths.emplace_back(QPointF(current_x-(0), GRAPH_PATH_SCALAR*y));//scalar affects scale height draw
-
                 }
                 else {
-                    //              TODO:dynamic scalar
-                    //fee_paths[i].lineTo(GRAPH_PATH_SCALAR*current_x, y);//affects scale height draw
                     fee_paths[i].lineTo(current_x, GRAPH_PATH_SCALAR*y);//scalar affects scale height draw
-
                 }
                 i++;
             }
