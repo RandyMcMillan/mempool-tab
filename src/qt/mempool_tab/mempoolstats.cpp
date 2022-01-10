@@ -123,7 +123,7 @@ void MempoolStats::drawHorzLines(
         }
         //Add text ornament
         if (ADD_TEXT) {
-            QString horz_line_range_text = QString::number(grid_tx_count/2.0).rightJustified(4, ' ');
+            QString horz_line_range_text = QString::number(grid_tx_count/0.60).rightJustified(4, ' ');
             QGraphicsTextItem *item_tx_count =
                 //m_scene->addText(QString::number(grid_tx_count/100).rightJustified(4, ' ')+QString("MvB"), LABELFONT);
                 m_scene->addText(QString("%1").arg(horz_line_range_text)+QString(" vB"), LABELFONT);
@@ -324,7 +324,7 @@ void MempoolStats::drawChart()
             if (i > 0 && std::abs(fee_paths[i-1].currentPosition().y() - fee_paths[i].currentPosition().y() ) > 20) {
                 QGraphicsTextItem *pathDot =
                 m_scene->addText(
-                    QString("⦿ (%1,%2)").arg(fee_paths[i-1].currentPosition().x()).arg(fee_paths[i-1].currentPosition().y()-30.0), gridFont);
+                    QString("⦿ (%1,%2)").arg(fee_paths[i-1].currentPosition().x()).arg(std::abs(bottom-fee_paths[i-1].currentPosition().y()-30.0)), gridFont);
                 pathDot->setPos(fee_paths[i-1].currentPosition().x(), fee_paths[i-1].currentPosition().y()-30.0);
                 pathDot->setZValue(i*10);
 
