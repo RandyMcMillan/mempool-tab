@@ -254,7 +254,7 @@ void MempoolStats::drawChart()
 
 
         const qreal x_increment =
-            (width() - (GRAPH_PADDING_LEFT + GRAPH_PADDING_LEFT_ADJUST + GRAPH_PADDING_RIGHT)) / (m_clientmodel->m_mempool_max_samples / GRAPH_X_SCALE_ADJUST); //samples.size();
+            (width() - (GRAPH_PADDING_LEFT + GRAPH_PADDING_LEFT_ADJUST + GRAPH_PADDING_RIGHT)) / (m_clientmodel->m_mempool_max_samples * GRAPH_X_INCREMENT_ADJUST); //samples.size();
         QPointF current_x_bottom = QPointF(current_x,bottom);
 
         drawHorzLines(x_increment, current_x_bottom, amount_of_h_lines, maxheight_g, maxwidth, bottom, max_txcount_graph, gridFont);
@@ -299,7 +299,7 @@ void MempoolStats::drawChart()
 
     //QString total_text = "test 267";//tr("").arg(QString::number(m_clientmodel->m_mempool_max_samples*m_clientmodel->m_mempool_collect_intervall/3600));
     //QString total_text = tr("").arg(QString::number(m_clientmodel->m_mempool_max_samples*m_clientmodel->m_mempool_collect_intervall/3600));
-    QString total_text = tr("Last %1 hours").arg(QString::number(m_clientmodel->m_mempool_max_samples*m_clientmodel->m_mempool_collect_intervall/3600));
+    QString total_text = tr("Last %1 hours").arg(QString::number(qCeil(0.66*(m_clientmodel->m_mempool_max_samples*m_clientmodel->m_mempool_collect_intervall/3600))));
 
     if (MEMPOOL_CLIENT_MODEL_LOGGING){
             LogPrintf("\nm_mempool_feehist_last_sample_timestamp = %s",(int)m_clientmodel->m_mempool_feehist_last_sample_timestamp);

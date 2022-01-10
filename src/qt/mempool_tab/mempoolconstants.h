@@ -25,7 +25,7 @@ static const double  GRAPH_HORZ_LINE_Y_SCALAR    = 1.75;
 
 static const int     GRAPH_AMOUNT_OF_HORZ_LINES  = 7;
 
-static const double  GRAPH_X_SCALE_ADJUST        = 1.0;//TODO: this will be dynamic via a gui pill box later x_increment in mempoolstats.cpp
+static const double  GRAPH_X_INCREMENT_ADJUST        = 0.66;//TODO: this will be dynamic via a gui pill box later x_increment in mempoolstats.cpp
 
 
 bool const GRAPH_ADD_TOTAL_TEXT                  = true;
