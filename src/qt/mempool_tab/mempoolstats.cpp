@@ -100,7 +100,7 @@ void MempoolStats::drawHorzLines(qreal x_increment, QPointF current_x_bottom,
         }
         //Add text ornament
         if (ADD_TEXT) {
-            QString horz_line_range_text = QString::number(qCeil(grid_tx_count/0.75));
+            QString horz_line_range_text = QString::number(qFloor(grid_tx_count/0.75));
             if (horz_line_range_text == "0"){
                 QGraphicsTextItem *item_tx_count =
                     m_scene->addText(QString("000 ").rightJustified(5, ' ')+QString("vB").leftJustified(2, ' '), LABELFONT);
