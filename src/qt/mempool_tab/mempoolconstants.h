@@ -54,15 +54,17 @@ static const double  DETAIL_WIDTH_SCALAR         = 1.0;
 static const double  DETAIL_HEIGHT_SCALAR        = 1.0;
 
 bool const           DETAIL_ADD_TOTAL_TEXT       = true;
-bool const           DETAIL_VIEW_LOGGING         = true;
+bool const           DETAIL_VIEW_LOGGING         = false;
 
 bool const MEMPOOL_GRAPH_LOGGING                 = false;
-bool const MEMPOOL_GRAPH_CROSS_PATH_LOGGING      = true;
-bool const MEMPOOL_GRAPH_FEEPATH_LOGGING         = true;
+bool const MEMPOOL_GRAPH_STEPBASE_LOGGING        = true;
+bool const MEMPOOL_GRAPH_HORZLINES_LOGGING        = true;
+bool const MEMPOOL_GRAPH_CROSS_PATH_LOGGING      = false;
+bool const MEMPOOL_GRAPH_FEEPATH_LOGGING         = false;
 bool const MEMPOOL_CLIENT_MODEL_LOGGING          = true;
-bool const MEMPOOL_GRAPH_SINGLE_CLICK_LOGGING    = true;
-bool const MEMPOOL_GRAPH_DOUBLE_CLICK_LOGGING    = true;
-bool const MEMPOOL_GRAPH_RESIZE_EVENT_LOGGING    = true;
+bool const MEMPOOL_GRAPH_SINGLE_CLICK_LOGGING    = false;
+bool const MEMPOOL_GRAPH_DOUBLE_CLICK_LOGGING    = false;
+bool const MEMPOOL_GRAPH_RESIZE_EVENT_LOGGING    = false;
 bool const MEMPOOL_HORZ_LINE_LOGGING             = true;
 bool const MEMPOOL_DETAIL_LOGGING                = false;
 bool const DETAIL_VIEW_HIDE_EVENT                = true;
